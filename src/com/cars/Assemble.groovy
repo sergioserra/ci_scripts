@@ -5,7 +5,6 @@ class Assemble implements Serializable{
     Assemble() {}
 
     def assembleReleaseBuildWithTask(task){
-      sh './gradlew clean'
       sh "./gradlew -PBUILD_NUMBER=${steps.env.BUILD_NUMBER} ${task}"
     }
 
@@ -13,7 +12,6 @@ class Assemble implements Serializable{
         def flavoursList = flavours.tokenize(',')
         for (String flavour : flavoursList){
             println "Assemble ${flavour}${variant}"
-            sh './gradlew clean'
             sh "./gradlew -PBUILD_NUMBER=${steps.env.BUILD_NUMBER} assemble${flavour}${variant}"
         }
     }
