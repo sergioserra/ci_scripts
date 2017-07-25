@@ -29,7 +29,7 @@ class Notifier implements Serializable {
 
        def msg = "${buildStatus}: `${env.JOB_NAME}` `${getCommitAuthor()}` #${env.BUILD_NUMBER}:\n${env.BUILD_URL}"
 
-       slackSend(color: color, message: msg)
+       script.slackSend(color: color, message: msg)
 
     }
 
