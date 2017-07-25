@@ -36,7 +36,7 @@ class Notifier implements Serializable {
     // Get latest commit author
     def private getCommitAuthor() {
         script.sh 'git log --format="%ae" | head -1 > commit-author.txt'
-        return scripts.readFile('commit-author.txt').trim()
+        return script.readFile('commit-author.txt').trim()
     }
 
 }
