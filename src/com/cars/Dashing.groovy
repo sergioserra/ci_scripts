@@ -14,5 +14,9 @@ class Dashing implements Serializable {
 
     }
 
-
+    // Get latest commit author
+    def private getCommitAuthor() {
+        sh 'git log --format="%ae" | head -1 > commit-author.txt'
+        return readFile('commit-author.txt').trim()
+    }
 }

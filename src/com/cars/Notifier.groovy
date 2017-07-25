@@ -4,7 +4,7 @@ class Notifier implements Serializable {
 
     Notifier(){}
 
-    def notifyBySlack( String buildStatus = 'STARTED') {
+    def notifySlack( String buildStatus = 'STARTED') {
 
        // Build status of null means success.
        buildStatus = buildStatus ?: 'SUCCESS'
