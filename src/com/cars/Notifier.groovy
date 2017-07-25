@@ -3,8 +3,12 @@ package com.cars
 class Notifier implements Serializable {
 
     def env;
+    def _steps;
 
-    Notifier(envs){ env = envs}
+    Notifier(steps) {
+      _steps = steps
+      env = steps.env
+    }
 
     def notifySlack( String buildStatus = 'STARTED') {
 
@@ -31,7 +35,7 @@ class Notifier implements Serializable {
 
     // Get latest commit author
     def private getCommitAuthor() {
-        sh 'git log --format="%ae" | head -1 > commit-author.txt'
+        _steps.sh 'git log --format="%ae" | head -1 > commit-author.txt'
         return readFile('commit-author.txt').trim()
     }
 
