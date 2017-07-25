@@ -2,7 +2,9 @@ package com.cars
 
 class Notifier implements Serializable {
 
-    Notifier(){}
+    def env;
+
+    Notifier(env){ env = envs}
 
     def notifySlack( String buildStatus = 'STARTED') {
 
