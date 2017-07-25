@@ -4,7 +4,7 @@ class Notifier implements Serializable {
 
     def env;
 
-    Notifier(env){ envs = env}
+    Notifier(envs){ env = envs}
 
     def notifySlack( String buildStatus = 'STARTED') {
 
