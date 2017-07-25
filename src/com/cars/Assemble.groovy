@@ -5,10 +5,17 @@ class Assemble implements Serializable{
     Assemble() {}
 
     def assembleReleaseBuildWithTask(task){
-      println ("Assemble")
+      sh './gradlew clean'
+      sh "./gradlew -PBUILD_NUMBER=${steps.env.BUILD_NUMBER} ${task}"
     }
 
     def assembleBuildsWithNames(flavours, variant){
+        def flavoursList = flavours.tokenize(',')
+        for (String flavour : flavoursList){
+            println "Assemble ${flavour}${variant}"
+            sh './gradlew clean'
+            sh "./gradlew -PBUILD_NUMBER=${steps.env.BUILD_NUMBER} assemble${flavour}${variant}"
+        }
     }
 
     def assembleBuilds(flavours, variant = "Release"){
@@ -19,7 +26,8 @@ class Assemble implements Serializable{
         }
     }
 
-    def archiveResults(){
+    def archiveArtifacts(){
+      archiveArtifacts '**/build/**/*.apk'
     }
 
 }
