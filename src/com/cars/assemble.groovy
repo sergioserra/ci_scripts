@@ -7,6 +7,7 @@ class Assemble implements Serializable{
     }
 
     def assembleReleaseBuildWithTask(task){
+      println ("Assemble")
     }
 
     def assembleBuildsWithNames(flavours, variant){
