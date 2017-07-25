@@ -3,8 +3,7 @@ package com.cars
 
 class Assemble implements Serializable{
 
-    Assemble(steps) {
-    }
+    Assemble() {}
 
     def assembleReleaseBuildWithTask(task){
       println ("Assemble")
