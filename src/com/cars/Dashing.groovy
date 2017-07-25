@@ -3,11 +3,15 @@ package com.cars
 // Put env vars
 class Dashing implements Serializable {
 
-    Dashing(){}
+    def script;
+
+    Dashing(def script){
+      this.script = script
+    }
 
     def notify(buildResult, branchName) {
 
-      httpRequest 'http://httpbin.org/get?result='
+      script.httpRequest 'http://httpbin.org/get?result='
           + buildResult
           + '&branchName='+ branchName
           + '&author=' + getCommitAuthor()
@@ -16,7 +20,7 @@ class Dashing implements Serializable {
 
     // Get latest commit author
     def private getCommitAuthor() {
-        sh 'git log --format="%ae" | head -1 > commit-author.txt'
-        return readFile('commit-author.txt').trim()
+        script.sh 'git log --format="%ae" | head -1 > commit-author.txt'
+        return script.readFile('commit-author.txt').trim()
     }
 }

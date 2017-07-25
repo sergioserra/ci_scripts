@@ -3,14 +3,18 @@ package com.cars
 // Put in a env variable
 class Sonarqube implements Serializable{
 
-    Sonarqube() {}
+    def script;
+
+    Sonarqube(def script) {
+      this.script = script
+    }
 
     def runPreviewAnalysisForPullRequest(pullRequestId) {
 
       def scannerHome = tool 'SonarScanner';
       //def pullRequestId = env.CHANGE_ID // Get pull request id
       withSonarQubeEnv('SonarServer') {
-          sh "$scannerHome/bin/sonar-scanner " +
+          script.sh "$scannerHome/bin/sonar-scanner " +
                   '-Dsonar.projectName=Android-Cars ' +
                   '-Dsonar.projectKey=android-cars ' +
                   '-Dsonar.host.url=http://localhost:9000 ' +
@@ -31,7 +35,7 @@ class Sonarqube implements Serializable{
 
       def scannerHome = tool 'SonarScanner';
       withSonarQubeEnv('SonarServer') {
-          sh "$scannerHome/bin/sonar-scanner " +
+          script.sh "$scannerHome/bin/sonar-scanner " +
                   '-Dsonar.projectName=Android-Cars ' +
                   '-Dsonar.projectKey=android-cars ' +
                   '-Dsonar.host.url=http://localhost:9000 ' +

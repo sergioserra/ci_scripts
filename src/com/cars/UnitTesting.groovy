@@ -2,7 +2,11 @@ package com.cars
 
 class UnitTesting implements Serializable{
 
-    UnitTesting() {}
+    def script
+
+    UnitTesting(def script) {
+      this.script = script
+    }
 
     /**
      * Defaults to run all the release unit tests for the application
@@ -17,23 +21,27 @@ class UnitTesting implements Serializable{
                 runSpecificFlavours(flavours,variant)
             }
 
-            saveTestResultsFromPath("app/build/test-results/**/*.xml")
+            saveTestResults()
         }catch (Exception exception){
             // If the tests fail save the results but rethrow the exception so the build fails
-            saveTestResultsFromPath("app/build/test-results/**/*.xml")
+            saveTestResults()
             throw exception
         }
     }
 
+    def private saveTestResults() {
+      script.saveTestResultsFromPath("app/build/test-results/**/*.xml")
+    }
+
     def runAllUnitTests(variant){
-        sh "./gradlew runAllUnit${variant}Tests"
+        script.sh "./gradlew runAllUnit${variant}Tests"
     }
 
     def runSpecificFlavours(flavours,variant){
         def flavoursList = flavours.tokenize(',')
         for (String flavour : flavoursList){
-            echo "Running unitTests for ${flavour}${variant}"
-            sh "./gradlew test${flavour}${variant}UnitTest"
+            script.echo "Running unitTests for ${flavour}${variant}"
+            script.sh "./gradlew test${flavour}${variant}UnitTest"
         }
     }
 

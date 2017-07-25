@@ -2,7 +2,11 @@ package com.cars
 
 class Preparation implements Serializable {
 
-    Preparation(){}
+    def script
+
+    Preparation(def script){
+      this.script = script
+    }
 
     def prepareBuild(){
         cleanWorkspace()
@@ -11,16 +15,16 @@ class Preparation implements Serializable {
     }
 
     def private checkout(){
-      checkout scm
+      script.checkout scm
     }
 
     def private cleanWorkspace(){
-      cleanWs()
+      script.cleanWs()
     }
 
     def private cleanAndRefreshDependencies(){
         //Cleans the build and the dependencies
-        sh "./gradlew clean --refresh-dependencies"
+        script.sh "./gradlew clean --refresh-dependencies"
     }
 
 }

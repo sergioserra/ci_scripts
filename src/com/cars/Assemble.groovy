@@ -2,17 +2,21 @@ package com.cars
 
 class Assemble implements Serializable{
 
-    Assemble() {}
+    def script;
+
+    Assemble(def script) {
+      this.script = script
+    }
 
     def assembleReleaseBuildWithTask(task){
-      sh "./gradlew -PBUILD_NUMBER=${steps.env.BUILD_NUMBER} ${task}"
+      script.sh "./gradlew -PBUILD_NUMBER=${steps.env.BUILD_NUMBER} ${task}"
     }
 
     def assembleBuildsWithNames(flavours, variant){
         def flavoursList = flavours.tokenize(',')
         for (String flavour : flavoursList){
             println "Assemble ${flavour}${variant}"
-            sh "./gradlew -PBUILD_NUMBER=${steps.env.BUILD_NUMBER} assemble${flavour}${variant}"
+            script.sh "./gradlew -PBUILD_NUMBER=${steps.env.BUILD_NUMBER} assemble${flavour}${variant}"
         }
     }
 
@@ -26,7 +30,7 @@ class Assemble implements Serializable{
 
     def archiveApk(buildResult){
       if (buildResult == "SUCCESS") {
-        archiveArtifacts '**/build/**/*.apk'
+        script.archiveArtifacts '**/build/**/*.apk'
       }
     }
 
