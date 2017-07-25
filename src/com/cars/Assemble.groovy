@@ -24,8 +24,10 @@ class Assemble implements Serializable{
         }
     }
 
-    def archiveArtifacts(){
-      archiveArtifacts '**/build/**/*.apk'
+    def archiveApk(buildResult){
+      if (buildResult == "SUCCESS") {
+        archiveArtifacts '**/build/**/*.apk'
+      }
     }
 
 }
