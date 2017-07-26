@@ -9,13 +9,8 @@ class Dashing implements Serializable {
       this.script = script
     }
 
-    def notify(buildResult, branchName) {
-      script.httpRequest 'http://httpbin.org/get?result=' + buildResult + '&branchName='+ branchName + '&author=' + getCommitAuthor()
+    def notify(buildResult, branchName, commitAuthor) {
+      script.httpRequest 'http://httpbin.org/get?result=' + buildResult + '&branchName='+ branchName + '&author=' + commitAuthor
     }
 
-    // Get latest commit author
-    def private getCommitAuthor() {
-        script.sh 'git log --format="%ae" | head -1 > commit-author.txt'
-        return script.readFile('commit-author.txt').trim()
-    }
 }
