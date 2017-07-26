@@ -24,7 +24,7 @@ class Preparation implements Serializable {
 
     def private cleanAndRefreshDependencies(){
         //Cleans the build and the dependencies
-        script.sh "./gradlew clean --refresh-dependencies"
+        script.sh "./gradlew clean"// --refresh-dependencies" // TODO remove refresh-dependencies for now
     }
 
 }
