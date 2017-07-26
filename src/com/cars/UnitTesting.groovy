@@ -30,7 +30,8 @@ class UnitTesting implements Serializable{
     }
 
     def private saveTestResults() {
-      script.saveTestResultsFromPath("app/build/test-results/**/*.xml")
+        script.junit 'app/build/test-results/**/*.xml'
+        //script.saveTestResultsFromPath("app/build/test-results/**/*.xml")
     }
 
     def runAllUnitTests(variant){
