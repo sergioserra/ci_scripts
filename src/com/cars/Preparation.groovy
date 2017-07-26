@@ -15,7 +15,7 @@ class Preparation implements Serializable {
     }
 
     def private checkout(){
-      script.checkout scm
+      script.checkout(script.scm)
     }
 
     def private cleanWorkspace(){
