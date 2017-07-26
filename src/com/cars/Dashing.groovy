@@ -10,12 +10,7 @@ class Dashing implements Serializable {
     }
 
     def notify(buildResult, branchName) {
-
-      script.httpRequest 'http://httpbin.org/get?result='
-          + buildResult
-          + '&branchName='+ branchName
-          + '&author=' + getCommitAuthor()
-
+      script.httpRequest 'http://httpbin.org/get?result=' + buildResult + '&branchName='+ branchName + '&author=' + getCommitAuthor()
     }
 
     // Get latest commit author
