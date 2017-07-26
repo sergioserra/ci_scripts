@@ -36,7 +36,7 @@ class Notifier implements Serializable {
     def notifyEmail(buildStatus,commitAuthor) {
          // evaluate the body block, and collect configuration into the object
          def config = [:]
-         def subject = config.subject ? config.subject : "${env.JOB_NAME} - Build #${env.BUILD_NUMBER} - ${currentBuild.result}!"
+         def subject = config.subject ? config.subject : "${env.JOB_NAME} - Build #${env.BUILD_NUMBER} - ${buildStatus}!"
          def content = '${JELLY_SCRIPT,template="static-analysis"}'
          // Attach buildlog when the build is not successfull
          def attachLog = (config.attachLog != null) ? config.attachLog : (buildStatus != "SUCCESS")
