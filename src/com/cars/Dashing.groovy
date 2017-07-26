@@ -1,5 +1,7 @@
 package com.cars
 
+import java.net.URLEncoder
+
 // Put env vars
 class Dashing implements Serializable {
 
@@ -10,7 +12,8 @@ class Dashing implements Serializable {
     }
 
     def notify(buildResult, branchName, commitAuthor) {
-      script.httpRequest 'http://httpbin.org/get?result=' + buildResult + '&branchName='+ branchName + '&author=' + commitAuthor
+      def payload = "{'buildResult' : ${buildResult},'branchName' : ${branchName},'commitAuthor' : ${commitAuthor}}"
+      script.httpRequest 'http://192.168.5.201:8080?name=LastBuildAndroid&payload'=URLEncoder.encode(payload, "UTF-8")
     }
 
 }
