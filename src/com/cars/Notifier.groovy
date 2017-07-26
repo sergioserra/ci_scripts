@@ -43,7 +43,7 @@ class Notifier implements Serializable {
          // Send email
          script.emailext(
              body: content, mimeType: 'text/html',
-             replyTo: '$DEFAULT_REPLYTO', subject: subject, attachmentsPattern: 'app/build/test-results/**/*.xml',
+             replyTo: '$DEFAULT_REPLYTO', subject: subject, attachmentsPattern: '**/build/**/*.apk',
              to: config.emailRecipients, attachLog: attachLog, recipientProviders: [[$class: 'CulpritsRecipientProvider'], [$class: 'RequesterRecipientProvider']]
         )
     }
