@@ -16,7 +16,7 @@ class UnitTesting implements Serializable{
         try {
 
             if(flavours == "All"){
-                runAllUnitTests(variant)
+                runAllUnitTests()
             }else{
                 runSpecificFlavours(flavours,variant)
             }
@@ -33,8 +33,8 @@ class UnitTesting implements Serializable{
         script.junit 'app/build/test-results/**/*.xml'
     }
 
-    def runAllUnitTests(variant){
-        script.sh "./gradlew runAllUnit${variant}Tests"
+    def runAllUnitTests(){
+        script.sh "./gradlew test"
     }
 
     def runSpecificFlavours(flavours,variant){
