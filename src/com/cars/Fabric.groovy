@@ -9,7 +9,7 @@ class Fabric implements Serializable {
       this.script = script
     }
 
-    def notify(flavors, branchName, changelog) {
+    def upload(flavors, branchName, changelog) {
         def releaseNotes = "${branchName}\n\n${changelog}"
         script.env.ORG_GRADLE_PROJECT_BETA_RELEASE_NOTES=releaseNotes // Pass BETA_RELEASE_NOTES to gradle
 
