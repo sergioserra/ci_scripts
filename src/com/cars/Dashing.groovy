@@ -11,8 +11,8 @@ class Dashing implements Serializable {
       this.script = script
     }
 
-    def notify(buildResult, branchName, commitAuthor) {
-      def String payload = URLEncoder.encode('{ "buildResult":"'+buildResult+'\","branchName":\"'+branchName+'\","commitAuthor":\"'+commitAuthor+'\"}','UTF-8')
+    def notify(buildResult, branchName, commitAuthor, buildTime) {
+      def String payload = URLEncoder.encode('{ "buildResult":"'+buildResult+'\","branchName":\"'+branchName+'\","commitAuthor":\"'+commitAuthor+'\","buildTime":\"'+buildTime+'\"}','UTF-8')
       script.httpRequest "http://192.168.5.201:8080/webhook.php?name=LastBuildAndroid&payload="+payload
     }
 
