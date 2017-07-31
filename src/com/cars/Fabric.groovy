@@ -10,7 +10,7 @@ class Fabric implements Serializable {
     }
 
     def upload(flavours, branchName, changelog) {
-        def releaseNotes = "${branchName}\n\n${changelog}"
+        def releaseNotes = "${changelog}"
         script.env.ORG_GRADLE_PROJECT_BETA_RELEASE_NOTES=releaseNotes // Pass BETA_RELEASE_NOTES to gradle
 
         def flavoursList = flavours.tokenize(',')
