@@ -29,9 +29,9 @@ class Notifier implements Serializable {
 
        def msg = "${buildStatus}: `${env.JOB_NAME}` `${commitAuthor}` #${env.BUILD_NUMBER}:\n${env.BUILD_URL}"
 
-       println "channel" + env.slackChannel
-       println "team" + env.slackTeamDomain
-       println "token" + env.slackToken
+       println "channel " + env.slackChannel
+       println "team " + env.slackTeamDomain
+       println "token " + env.slackToken
 
        script.slackSend channel: env.slackChannel, color: color, message: msg, teamDomain: env.slackTeamDomain, token: env.slackToken
 
