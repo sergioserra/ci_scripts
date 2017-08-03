@@ -45,7 +45,7 @@ class Preparation implements Serializable {
 
       // Slack
       script.env.slackTeamDomain = "naspersclassifieds"
-      script.env.slackChannel = "cars-ci.builds"
+      script.env.slackChannel = "#cars-ci.builds"
       script.env.slackToken = "cwQJ4qiBlSbPqpScl18W5mUj"
 
     }
