@@ -29,7 +29,7 @@ class Notifier implements Serializable {
 
        def msg = "${buildStatus}: `${env.JOB_NAME}` `${commitAuthor}` #${env.BUILD_NUMBER}:\n${env.BUILD_URL}"
 
-       script.slackSend(color: color, message: msg)
+       script.slackSend channel: "${env.slackChannel}", color: color, message: msg, teamDomain: "${env.slackTeamDomain}", token: "${env.slackToken}"
 
     }
 
@@ -43,7 +43,7 @@ class Notifier implements Serializable {
          // Send email
          script.emailext(
              body: content, mimeType: 'text/html',
-             replyTo: '$DEFAULT_REPLYTO', subject: subject, attachmentsPattern: '**/build/**/*.apk',
+             replyTo: "${env.defaultReplyTo}", subject: subject, attachmentsPattern: '**/build/**/*.apk',
              to: config.emailRecipients, attachLog: attachLog, recipientProviders: [[$class: 'CulpritsRecipientProvider'], [$class: 'RequesterRecipientProvider']]
         )
     }

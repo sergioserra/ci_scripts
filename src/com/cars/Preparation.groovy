@@ -40,6 +40,14 @@ class Preparation implements Serializable {
       // Dashing
       script.env.dashing = 'http://192.168.5.201:8080/webhook.php?name=LastBuildAndroid&payload='
 
+      // Email-ext
+      script.env.defaultReplyTo = 'sergio.serra@olx.com'
+
+      // Slack
+      script.env.slackTeamDomain = "naspersclassifieds"
+      script.env.slackChannel = "cars-ci.builds"
+      script.env.slackToken = "cwQJ4qiBlSbPqpScl18W5mUj"
+
     }
 
 }
