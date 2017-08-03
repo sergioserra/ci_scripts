@@ -11,7 +11,7 @@ class Sonarqube implements Serializable{
 
     def runPreviewAnalysisForPullRequest(pullRequestId) {
 
-      script.sh './gradlew sonarqube -Dsonar.analysis.mode=preview -Dsonar.github.pullRequest='+pullRequestId
+      script.sh './gradlew sonarqube -Dsonar.analysis.mode=preview -Dsonar.github.pullRequest='+5
 
       /*def scannerHome = script.tool "SonarScanner"
       script.sh "$scannerHome/bin/sonar-scanner " +
