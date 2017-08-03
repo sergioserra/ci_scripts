@@ -11,7 +11,9 @@ class Sonarqube implements Serializable{
 
     def runPreviewAnalysisForPullRequest(pullRequestId) {
 
-      def scannerHome = script.tool "SonarScanner"
+      script.sh './gradlew sonarqube -Dsonar.analysis.mode=preview -Dsonar.github.pullRequest='+pullRequestId
+
+      /*def scannerHome = script.tool "SonarScanner"
       script.sh "$scannerHome/bin/sonar-scanner " +
           "-Dsonar.projectName=Android-Cars " +
           "-Dsonar.projectKey=android-cars " +
@@ -23,13 +25,15 @@ class Sonarqube implements Serializable{
           "-Dsonar.github.repository=${script.env.repository} " +
           "-Dsonar.github.oauth=${script.env.oauth} " +
           "-Dsonar.analysis.mode=preview " +
-          "-Dsonar.github.pullRequest=$pullRequestId"
+          "-Dsonar.github.pullRequest=$pullRequestId" */
 
     }
 
     def runFullAnalysis() {
 
-      def scannerHome = tool "SonarScanner"
+      script.sh './gradlew sonarqube'
+
+      /*def scannerHome = tool "SonarScanner"
       script.sh "$scannerHome/bin/sonar-scanner " +
           "-Dsonar.projectName=Android-Cars " +
           "-Dsonar.projectKey=android-cars " +
@@ -39,7 +43,7 @@ class Sonarqube implements Serializable{
           "-Dsonar.language=java " +
           "-Dsonar.sources=app/src/main/java " +
           "-Dsonar.github.repository=${script.env.repository} " +
-          "-Dsonar.github.oauth=${script.env.oauth} "
+          "-Dsonar.github.oauth=${script.env.oauth} "*/
 
     }
 

@@ -16,6 +16,7 @@ class Fabric implements Serializable {
         def flavoursList = flavours.tokenize(',')
         for (String flavour : flavoursList){
             script.println "Upload to Fabric ${flavour}"
+            script.println "Changelog: " + releaseNotes
             script.sh "./gradlew crashlyticsUploadDistribution${flavour}Release"
         }
     }
